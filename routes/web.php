@@ -11,9 +11,11 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+Route::get('/', 'HomeController@index')->name('home');
 
 Route::get('/folders/{id}/tasks', 'TaskController@index')->name('tasks.index');
 
@@ -25,3 +27,5 @@ Route::post('/folders/{id}/tasks/create', 'TaskController@create');
 
 Route::get('/folders/{id}/tasks/{task_id}/edit', 'TaskController@showEditForm')->name('tasks.edit');
 Route::post('/folders/{id}/tasks/{task_id}/edit', 'TaskController@edit');
+
+Auth::routes();
