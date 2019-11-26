@@ -8,13 +8,17 @@ use App\Folder;
 use App\Task; // ★ 追加
 use App\Http\Requests\CreateTask;
 use App\Http\Requests\EditTask;
+// ★ Authクラスをインポートする
+use Illuminate\Support\Facades\Auth;
 
 class TaskController extends Controller
 {
     public function index(int $id)
     {
-        $folders = Folder::all();
-
+        // $folders = Folder::all();
+        // ★ ユーザーのフォルダを取得する
+        $folders = Auth::user()->folders()->get();
+        
         // 選ばれたフォルダを取得する
         $current_folder = Folder::find($id);
 
