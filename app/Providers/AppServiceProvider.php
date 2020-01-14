@@ -12,7 +12,7 @@ class AppServiceProvider extends ServiceProvider
     protected $policies = [
         Folder::class => FolderPolicy::class,
     ];
-    
+
     /**
      * Register any application services.
      *
@@ -30,6 +30,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        // 本番環境(Heroku)でhttpsを強制する
+       if (\App::environment('production')) {
+           \URL::forceScheme('https');
+       }
     }
 }
